@@ -1,0 +1,84 @@
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles.css';
+import $ from 'jquery';
+import { Grid } from './scripts';
+
+// * The program creates a row of length 9 from given grid
+//   * Example Input: 5, 3, 2, 1, 4, 6, 7, 8, 9
+//   * Example Output: [5, 3, 2, 1, 4, 6, 7, 8, 9]
+
+// var rowArray = [5, 3, 2, 1, 4, 6, 7, 8]
+
+// Something with notation of backtics not working
+// function inputToString(){
+// for (var g =0; g< 9; g ++){
+//   var tempString = "";
+//   $(`.row${g}`).each(function (){
+//     tempString += $(this).val() + " ";
+//   })
+
+// `grid.row${g}` = grid.addToRow(tempString.toString);
+// }
+// }
+
+function populateGrid(randomGrid){
+  for (var i = 0; i < 9; i++){
+    for (var j = 0; j<9; j++){
+      randomGrid[`row${i}`].push($(`#cell-${i}-${j}`).val());
+    }
+  }
+}
+
+$(document).ready(function(){
+  $("#submit").click(function(event){
+    event.preventDefault();
+    var grid = new Grid();
+
+    populateGrid(grid);
+
+    // $('input[class="row0"]').each(function () {
+    //   grid.row0.push($(this).val())
+    // });
+
+    // for (var j = 0; j<9; j++){
+    //   grid.row0.push($(`#cell-0-${j}`).val());
+    // }
+
+    // $('input[class="row1"]').each(function () {
+    //   grid.row1.push($(this).val())
+    // });
+
+    // $('input[class="row2"]').each(function () {
+    //   grid.row2.push($(this).val())
+    // });
+
+    console.log(grid);
+    var result = grid.checkResult();
+    $("#output").append(result);
+  });
+});
+
+// console.log(grid.row0);
+// console.log("row", grid.checkArray(grid.row0));
+// console.log("col", grid.checkColumn(0));
+// console.log("total result", grid.checkResult());
+
+// var string = "7 5 9 4 6 2 8 1 3";
+// grid.row0 = grid.addToRow(string);
+// var string1 = "4 6 3 5 1 8 2 9 7";
+// grid.row1 = grid.addToRow(string1);
+// var string2 = "1 2 8 9 7 3 6 4 5";
+// grid.row2 = grid.addToRow(string2);
+// var string3 = "6 9 7 1 8 4 5 3 2";
+// grid.row3 = grid.addToRow(string3);
+// var string4 = "5 8 4 2 3 6 9 7 1";
+// grid.row4 = grid.addToRow(string4);
+// var string5 = "2 3 1 7 9 5 4 8 6";
+// grid.row5 = grid.addToRow(string5);
+// var string6 = "3 4 5 8 2 1 7 6 9";
+// grid.row6 = grid.addToRow(string6);
+// var string7 = "9 1 2 6 4 7 3 5 8";
+// grid.row7 = grid.addToRow(string7);
+// var string8 = "8 7 6 3 5 9 1 2 4";
+// grid.row8 = grid.addToRow(string8)
